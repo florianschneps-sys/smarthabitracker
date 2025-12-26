@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/habit.dart';
 import 'exercise_screen.dart';
+import 'stats_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -58,6 +60,22 @@ class _HomeScreenState extends State<HomeScreen> {
   },
   child: const Text('Übung starten'),
 ),
+
+ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StatsScreen(
+          currentStreak: habit.currentStreak,
+          totalRepetitions: habit.currentStreak * habit.dailyTarget,
+        ),
+      ),
+    );
+  },
+  child: const Text('Statistik anzeigen'),
+),
+
           ],
         ),
       ),
